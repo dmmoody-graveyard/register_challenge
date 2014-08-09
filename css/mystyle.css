@@ -1,0 +1,47 @@
+html {
+    background: url("../img/greylinen.png");
+}
+body {
+    margin: 25px 0;
+}
+.header {
+    background: #ccc;
+}
+.screen {
+    border: 2px solid red;
+    font-size: 5em;
+    width: 100%;
+    height: 100px;
+}
+.keypad,
+.display {
+    display: inline-block;
+    float: left;
+    width: 400px;
+    height: 500px;
+}
+.v1,
+.v2,
+.horizontal {
+    float: right;
+    display: inline-block;
+    font-size: 5em;
+    color: steelblue;
+}
+.v1 {
+    width: 100px;
+    height: 100px;
+}
+.v2 {
+    width: 100px;
+    height: 200px;
+}
+.horizontal {
+    width: 200px;
+    height: 100px;
+}
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
