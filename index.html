@@ -1,33 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 	<head>
 		<meta charset="utf-8" lang="en" />
 		<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/mystyle.css" type="text/css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+		<script src="js/angular.min.js"></script>
+        <script src="js/app.js"></script>
 	</head>
 
-	<body class="container">
+	<body class="container" ng-controller="registerCtrl">
         <div class="header">
             <h1>Rentrak Cash Register <small>Code Challenge</small></h1>
         </div>
-        <div class="keypad group">
-            <div class="screen">15+</div>
-            <button class="v2">-</button>
-            <button class="v1">9</button>
-            <button class="v1">8</button>
-            <button class="v1">7</button>
-            <button class="v1">6</button>
-            <button class="v1">5</button>
-            <button class="v1">4</button>
-            <button class="v2">+</button>
-            <button class="v1">3</button>
-            <button class="v1">2</button>
-            <button class="v1">1</button>
-            <button class="v1">C</button>
-            <button class="horizontal">0</button>
+        <div class="item group">
+            
+        
         </div>
-
+        <div class="keypad group" ng-init="count=0">
+            <div class="screen text-right">{{ count }}</div>
+                <button class="v2">-</button>
+                <button class="v1">9</button>
+                <button class="v1">8</button>
+                <button class="v1">7</button>
+                <button class="v1">6</button>
+                <button class="v1">5</button>
+                <button class="v1">4</button>
+                <button class="v2" ng-click="count = count + 1">+</button>
+                <button class="v1">3</button>
+                <button class="v1">2</button>
+                <button class="v1">1</button>
+                <button class="v1">C</button>
+                <button class="horizontal">0</button>
+        </div>
+        <button ng-click="count = count + 1" ng-init="count=0">
+          Increment
+        </button>
+        count: {{count}}
 	</body>
 </html>
