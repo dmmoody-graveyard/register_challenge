@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="shoppingApp">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css">
@@ -9,28 +9,34 @@
         <script src="js/app.js"></script>
 	</head>
 
-    <body class="container" ng-controller="ProductListCtrl">
-    <ul>
-        <li ng-repeat="product in products">
-            {{product.name}}
-            <p>{{product.cost | currency}}</p>
-            <p>{{product.discount | currency}}</p>
-            <p>Quantity: <input type="number" name="quanty" ng-model="quantity"></p>
-            <p>{{product.discount_quantity}}</p>
-            <p>Total: {{ item_total = product.cost * quantity | currency }}</p>
-            <button ng-click="total = total + item_total">
-              Add to Cart
-            </button>
-        </li>
-    </ul>
-        <p>{{ total = total + item_total }}</p>
+    <body class="container" ng:app>
+        <h2>Shopping Cart Example</h2>
+        <div ng:controller="CartForm">
+            <table class="table">
+                <tr>
 
-        <form name="shopping">
-            New Cost for Product A: <input type="text" name="product_name" ng-model="products[0].cost">
-            New Cost for Product B: <input type="text" name="product_name" ng-model="products[1].cost">
-            New Cost for Product C: <input type="text" name="product_name" ng-model="products[2].cost">        
-        </form>
-        
-        <h1>{{ total | currency }}</h1>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Cost</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+                <tr ng:repeat="item in invoice.items">
+                    <td>{{item.name}}</td>           
+                    <td><input type="number" ng:model="item.qty" ng:required class="input-mini"></td>
+                    <td><input type="number" ng:model="item.cost" ng:required class="input-mini"></td>
+                    <td>{{item.subtotal | currency}}</td>
+                    <td>
+                        [<a href ng:click="removeItem($index)">X</a>]
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href ng:click="addItem()" class="btn btn-small">add item</a></td>
+                    <td></td>
+                    <td>Total:</td>
+                    <td>{{total() | currency}}</td>
+                </tr>
+            </table>
+        </div>
 	</body>
 </html>
