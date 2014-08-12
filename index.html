@@ -9,29 +9,32 @@
         <script src="js/app.js"></script>
 	</head>
 
-    <body class="container" ng:app>
-        <h2>Shopping Cart Example</h2>
+    <body class="container" ng:App>
+        <h2>Shopping Cart Example - <small>Rentrak Code Challenge</small></h2>
         <div ng:controller="CartForm">
             <table class="table">
                 <tr>
 
-                    <th>Description</th>
-                    <th>Qty</th>
-                    <th>Cost</th>
-                    <th>Total</th>
-                    <th></th>
+                    <th class="col-sm-5">Description</th>
+                    <th class="col-sm-1">Qty</th>
+                    <th class="col-sm-2">Cost</th>
+                    <th class="col-sm-1"></th>
+                    <th class="col-sm-2">Total</th>
                 </tr>
                 <tr ng:repeat="item in invoice.items">
-                    <td>{{item.name}}</td>           
+                    <th><h4>{{item.name}}  <small ng-if="item.discount_qty">Get {{item.discount_qty[0]}} for the price of {{item.discount_qty[1]}}</small></h4></th>
                     <td><input type="number" ng:model="item.qty" ng:required class="input-mini"></td>
-                    <td><input type="number" ng:model="item.cost" ng:required class="input-mini"></td>
-                    <td>{{item.subtotal | currency}}</td>
+                    <td ng-if="item.edit_price"><input type="number" ng:model="item.cost" ng:required class="input-mini"></td>
+                    <td ng-if="!item.edit_price">{{item.cost | currency}}</td>
                     <td>
-                        [<a href ng:click="removeItem($index)">X</a>]
+                        <button ng-if="!item.edit_price" ng-click="item.edit_price = true" class="btn btn-default btn-xs"><small>Update Price</small></button>
+                        <button ng-if="item.edit_price" ng-click="item.edit_price = false" class="btn btn-default btn-xs"><small>Done Updating</small></button>
                     </td>
+                    <td>{{item.subtotal | currency}}</td>
                 </tr>
                 <tr>
-                    <td><a href ng:click="addItem()" class="btn btn-small">add item</a></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td>Total:</td>
                     <td>{{total() | currency}}</td>
