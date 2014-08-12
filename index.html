@@ -22,7 +22,7 @@
                     <th class="col-sm-2">Total</th>
                 </tr>
                 <tr ng:repeat="item in invoice.items">
-                    <th><h4>{{item.name}}  <small ng-if="item.discount_qty">Get {{item.discount_qty[0]}} for the price of {{item.discount_qty[1]}}</small></h4></th>
+                    <th><h4>{{item.name}}  <small ng-if="item.discount_qty[0]">Get {{item.discount_qty[0]}} for the price of {{item.discount_qty[1]}}</small></h4></th>
                     <td><input type="number" ng:model="item.qty" ng:required class="input-mini"></td>
                     <td ng-if="item.edit_price"><input type="number" ng:model="item.cost" ng:required class="input-mini"></td>
                     <td ng-if="!item.edit_price">{{item.cost | currency}}</td>

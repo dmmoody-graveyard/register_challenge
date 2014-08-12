@@ -4,7 +4,7 @@ function CartForm($scope) {
             qty: 0,
             name: 'Product A',
             cost: 20.00,
-            discount_qty: 0,
+            discount_qty: [0,0],
             subtotal: 0,
             edit_price: false},
             {
@@ -18,7 +18,7 @@ function CartForm($scope) {
             qty: 0,
             name: 'Product C',
             cost: 30.00,
-            discount_qty: 0,
+            discount_qty: [0,0],
             subtotal: 0,
             edit_price: false}
                ]
@@ -27,8 +27,9 @@ function CartForm($scope) {
     $scope.total = function() {
         var total = 0;
         angular.forEach($scope.invoice.items, function(item) {
-            if (item.discount_qty[0] > 0 && Math.floor(item.qty / item.discount_qty[0]) >= 1) {
-                item.subtotal = item.qty * item.cost - (Math.floor(item.qty / item.discount_qty[0]) * item.cost * (item.discount_qty[0] - item.discount_qty[1]));
+            var savings = Math.floor(item.qty / item.discount_qty[0]) * item.cost * (item.discount_qty[0] - item.discount_qty[1]);
+            if (item.discount_qty[0] && Math.floor(item.qty / item.discount_qty[0])) {
+                item.subtotal = item.qty * item.cost - savings;
                 total += item.subtotal;
             } else {
                 item.subtotal = item.qty * item.cost;
