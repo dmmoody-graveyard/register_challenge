@@ -33,6 +33,10 @@ myApp.controller('CartForm', ['$scope', function ($scope) {
         $scope.cartList.push(item);
     };
     
+    $scope.removeItem = function(index) {
+        $scope.cartList.splice(index, 1);
+    };
+    
     $scope.total = function() {
         var total = 0;
         angular.forEach($scope.productList, function(item) {
