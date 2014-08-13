@@ -25,8 +25,12 @@ myApp.controller('CartForm', ['$scope', function ($scope) {
         edit_price: false}
     ];
     
-    $scope.cartList = {
+    $scope.cartList = [
         
+        ];
+    
+    $scope.addItem = function(item) {
+        $scope.cartList.push(item);
     };
     
     $scope.total = function() {

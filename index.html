@@ -12,6 +12,21 @@
     <body class="container" ng-app="myApp">
         <h2>Shopping Cart Example - <small>Rentrak Code Challenge</small></h2>
         <div ng-controller="CartForm">
+            
+            <table class="table">
+                <tr>
+                    <th class="col-sm-5">Description</th>
+                    <th class="col-sm-2">Cost</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in productList">
+                    <th><h4>{{item.name}}  <small ng-if="item.discount_qty[0]">Get {{item.discount_qty[0]}} for the price of {{item.discount_qty[1]}}</small></h4></th>
+                    <td>{{item.cost | currency}}</td>
+                    <td><a href ng-click="addItem(item)" class="btn btn-small">Add Item</a></td>
+                </tr>
+            </table>
+
+            
             <table class="table">
                 <tr>
 
@@ -21,7 +36,7 @@
                     <th class="col-sm-1"></th>
                     <th class="col-sm-2">Total</th>
                 </tr>
-                <tr ng-repeat="item in productList">
+                <tr ng-repeat="item in cartList">
                     <th><h4>{{item.name}}  <small ng-if="item.discount_qty[0]">Get {{item.discount_qty[0]}} for the price of {{item.discount_qty[1]}}</small></h4></th>
                     <td><input type="number" ng-model="item.qty" ng-required class="input-mini"></td>
                     <td ng-if="item.edit_price"><input type="number" ng-model="item.cost" ng-required class="input-mini"></td>
@@ -39,6 +54,7 @@
                     <td>Total:</td>
                     <td>{{total() | currency}}</td>
                 </tr>
+                <tr>{{cartList}}</tr>
             </table>
         </div>
         <footer>
