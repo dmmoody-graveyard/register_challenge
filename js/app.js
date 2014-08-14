@@ -30,11 +30,24 @@ myApp.controller('CartForm', ['$scope', function ($scope) {
     ];
     
     $scope.addItem = function(item) {
-        $scope.cartList.push(item);
+        if (item.qty) {
+            $scope.cartList.push(item);
+        } else {
+            alert("Please enter quantity");
+        }
     };
     
     $scope.removeItem = function(index) {
         $scope.cartList.splice(index, 1);
+    };
+    
+    $scope.checkCart = function(obj, list) {
+        var i;
+        for (i = 0; i < list.length; i++) {
+            if (angular.equals(list[i], obj)) {
+                return true;
+            }
+        }
     };
     
     $scope.total = function() {

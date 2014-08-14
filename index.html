@@ -10,9 +10,9 @@
 	</head>
 
     <body class="container" ng-app="myApp">
-        <h2>Shopping Cart Example - <small>Rentrak Code Challenge</small></h2>
+        <h1 class="text-center">Shopping Cart Example - <small>Rentrak Code Challenge</small></h1>
         <div ng-controller="CartForm">
-            
+            <h2>Products</h2>
             <table class="table">
                 <tr>
                     <th class="col-sm-5">Description</th>
@@ -27,17 +27,21 @@
                     <td ng-if="!item.edit_price">{{item.cost | currency}}
                         <button ng-click="item.edit_price = true" class="btn btn-default btn-xs"><small>Update Price</small></button>
                     </td>
-                    <td>
+                    <td ng-if="!checkCart(item, cartList)">
                         <input type="number" ng-model="item.qty" ng:required class="input-mini">
                         <button ng-click="addItem(item)" class="btn btn-default btn-xs">Add to Cart</button>
                     </td>
+                    <td ng-if="checkCart(item, cartList)">
+                        Already in your cart. 
+                    </td>
                 </tr>
             </table>
-
             
+            <hr>
+            
+            <h2>Shopping Cart</h2>
             <table class="table">
                 <tr>
-
                     <th class="col-sm-4">Description</th>
                     <th class="col-sm-1">Qty</th>
                     <th class="col-sm-2">Cost</th>
@@ -49,7 +53,7 @@
                     <td>{{item.qty}}</td>
                     <td>{{item.cost | currency}}</td>
                     <td>{{item.subtotal | currency}}</td>
-                    <td><button ng-click="removeItem()" class="btn btn-default btn-xs">Remove Item</button></td>
+                    <td><button ng-click="removeItem($index)" class="btn btn-default btn-xs">Remove Item</button></td>
                 </tr>
                 <tr>
                     <td></td>
